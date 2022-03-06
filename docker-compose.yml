@@ -17,10 +17,6 @@ services:
         - reversproxy
     image: httpd:alpine
     restart: always
-    deploy:
-      mode: replicated
-      replicas: 2
-    
     
   percona:
     depends_on:
