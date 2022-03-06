@@ -1,0 +1,29 @@
+services:
+  reverseproxy:
+    image: reverseproxy
+      ports:
+        - 8080:8080
+        - 8081:8081
+      restart: always
+ 
+  nginx:
+    depends_on:
+        - reverseproxy
+    image: nginx:alpine
+    restart: always
+  
+  apache:
+    depends_on:
+        - reversproxy
+    image: httpd:alpine
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 2
+    
+    
+  percona:
+    depends_on:
+       - reverseproxy
+    image: percona:ps-8.0
+    restart: always
